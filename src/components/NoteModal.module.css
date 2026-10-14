@@ -1,0 +1,103 @@
+.paper {
+  position: relative;
+  width: min(92vw, 460px);
+  max-height: 84vh;
+  overflow-y: auto;
+  border-radius: 14px;
+  padding: 2.6rem 1.8rem 1.2rem;
+  box-shadow: 0 24px 60px rgba(20, 12, 30, 0.4);
+}
+
+/* sewn stitched line inside the unfolded paper */
+.paper::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px dashed rgba(74, 59, 92, 0.16);
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* little flower doodle pinned to the corner of the paper */
+.paper::after {
+  content: '🌷';
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-size: 1.25rem;
+  transform: rotate(10deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.paper--butter { background: linear-gradient(180deg, #fff9e0, #fff1b8); }
+.paper--butter::after { content: '🌷'; }
+.paper--pink { background: linear-gradient(180deg, #fff0f5, #ffd9e6); }
+.paper--pink::after { content: '✏️'; }
+.paper--sky { background: linear-gradient(180deg, #f0f8ff, #d3ecff); }
+.paper--sky::after { content: '🌈'; }
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(74, 59, 92, 0.12);
+  background: var(--c-white, #fffdf9);
+  color: var(--c-ink, #4a3b5c);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(74, 59, 92, 0.18);
+  z-index: 2;
+}
+
+.close:hover {
+  transform: scale(1.08);
+}
+
+.close:focus-visible {
+  outline: 3px solid var(--c-ink, #4a3b5c);
+  outline-offset: 2px;
+}
+
+.foldLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(180deg, rgba(74, 59, 92, 0.08), transparent);
+}
+
+.title {
+  font-family: var(--font-serif, serif);
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  font-weight: 700;
+  margin: 0 0 0.9rem;
+  text-align: center;
+  color: var(--c-ink, #4a3b5c);
+}
+
+.body {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--c-ink, #4a3b5c);
+}
+
+.para {
+  margin: 0 0 0.9rem;
+  white-space: pre-wrap;
+}
+
+.signature {
+  font-family: var(--font-hand, cursive);
+  font-size: 1.15rem;
+  text-align: right;
+  margin: 1.4rem 0 0;
+  color: var(--c-ink, #4a3b5c);
+  opacity: 0.65;
+}

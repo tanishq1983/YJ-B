@@ -1,0 +1,35 @@
+.button {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  z-index: 30;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(74, 59, 92, 0.14);
+  border-radius: 50%;
+  background: var(--c-pink, #ffd3e0);
+  color: var(--c-ink, #4a3b5c);
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--c-ink);
+  outline-offset: 2px;
+}

@@ -1,0 +1,150 @@
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1.6rem, 4vw, 2.8rem);
+}
+
+.singleComposition {
+  display: flex;
+  justify-content: center;
+}
+
+.polaroid {
+  position: relative;
+  width: min(240px, 62vw);
+  background: var(--c-white);
+  border: none;
+  border-radius: 8px;
+  padding: 14px 14px 12px;
+  box-shadow:
+    0 2px 0 rgba(74, 59, 92, 0.06),
+    0 12px 26px rgba(74, 59, 92, 0.16);
+  cursor: pointer;
+  text-align: center;
+  transition: rotate 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* sewn stitched inner line */
+.polaroid::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px dashed rgba(74, 59, 92, 0.14);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* cute corner sticker, alternating via nth-child */
+.polaroid::after {
+  content: '⭐';
+  position: absolute;
+  bottom: 52px;
+  left: -12px;
+  font-size: 1.35rem;
+  z-index: 2;
+  filter: drop-shadow(0 3px 4px rgba(74, 59, 92, 0.25));
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.polaroid:nth-child(even)::after {
+  left: auto;
+  right: -12px;
+  bottom: auto;
+  top: 34px;
+  content: '🌸';
+  transform: rotate(14deg);
+}
+
+.polaroid:nth-child(3n)::after {
+  content: '✨';
+  top: auto;
+  bottom: 46px;
+  right: auto;
+  left: -14px;
+  transform: rotate(18deg);
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow:
+    0 3px 0 rgba(74, 59, 92, 0.06),
+    0 22px 44px rgba(74, 59, 92, 0.24);
+  z-index: 2;
+}
+
+.polaroid:active {
+  transform: scale(0.98);
+}
+
+.polaroid:focus-visible {
+  outline: 3px solid var(--c-ink);
+  outline-offset: 4px;
+}
+
+.polaroidSingle {
+  width: min(320px, 80vw);
+  padding: 18px 18px 16px;
+}
+
+.photoArea {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--c-cream);
+}
+
+.photoArea img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: var(--c-cream);
+}
+
+.caption {
+  display: block;
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-top: 0.55rem;
+  color: var(--c-ink);
+}
+
+.hoverHint {
+  position: absolute;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: var(--c-ink);
+  color: var(--c-white);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .polaroid:hover .hoverHint {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@media (hover: none) {
+  .hoverHint {
+    display: none; /* not useful on touch */
+  }
+}

@@ -1,0 +1,61 @@
+.wrap {
+  max-width: 620px;
+  margin: 0 auto;
+  background: var(--c-white);
+  border: 2px solid rgba(74, 59, 92, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: clamp(1.8rem, 5vw, 2.8rem);
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* washi tape holding the compliment card down */
+.wrap::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  width: 110px;
+  height: 30px;
+  transform: translateX(-50%) rotate(2deg);
+  border-radius: 2px;
+  background-color: var(--c-lavender);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.35) 0 6px,
+    transparent 6px 12px
+  );
+  pointer-events: none;
+}
+
+.doodle {
+  font-size: 2.2rem;
+  position: absolute;
+  top: -22px;
+  left: 26px;
+  rotate: -10deg;
+}
+
+.compliment {
+  font-family: var(--font-hand);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-weight: 600;
+  color: var(--c-ink);
+  margin: 0;
+  padding: 0.6rem 1.2rem;
+  background: var(--c-butter);
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(74, 59, 92, 0.12);
+}
+
+.output {
+  min-height: 3.6rem;
+  display: grid;
+  place-items: center;
+  width: 100%;
+}

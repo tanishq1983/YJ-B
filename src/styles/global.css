@@ -1,0 +1,256 @@
+/* ------------------------------------------------------------------
+   GLOBAL DESIGN SYSTEM — A Little Birthday Universe
+   Colors are injected from src/config.js (see palette) so the whole
+   theme can be changed from one place.
+------------------------------------------------------------------- */
+
+:root {
+  /* Fallback values — overwritten at runtime from config.palette */
+  --c-lavender: #c9b6ff;
+  --c-pink: #ffd3e0;
+  --c-butter: #ffefad;
+  --c-cream: #fdf8f0;
+  --c-sky: #bfe3ff;
+  --c-ink: #4a3b5c;
+  --c-white: #fffdf9;
+
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+
+  --shadow-soft: 0 14px 34px rgba(74, 59, 92, 0.14);
+  --shadow-card: 0 10px 26px rgba(74, 59, 92, 0.12);
+  --shadow-page: 0 18px 44px rgba(74, 59, 92, 0.13);
+  --radius-lg: 26px;
+  --radius-md: 18px;
+
+  /* Subtle dotted paper texture */
+  --paper-texture: radial-gradient(rgba(74, 59, 92, 0.045) 1px, transparent 1.5px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--c-ink);
+  background-color: var(--c-cream);
+  background-image: var(--paper-texture);
+  background-size: 22px 22px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ---------------- Shared building blocks ---------------- */
+
+.section {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5.5rem) 1.25rem;
+  z-index: 1;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 4.6vw, 2.7rem);
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 0.35rem;
+  line-height: 1.2;
+  color: var(--c-ink);
+}
+
+.section-subheading {
+  font-family: var(--font-hand);
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+  text-align: center;
+  color: var(--c-ink);
+  opacity: 0.75;
+  margin: 0 0 2.4rem;
+}
+
+/* Chunky friendly button used across the site */
+.friendly-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--c-ink);
+  background: linear-gradient(135deg, var(--c-pink), var(--c-butter));
+  border: 2px solid rgba(74, 59, 92, 0.16);
+  border-radius: 999px;
+  padding: 0.85rem 1.6rem;
+  cursor: pointer;
+  box-shadow: 0 6px 0 rgba(74, 59, 92, 0.18);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+/* glossy shine sweep on hover */
+.friendly-button::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -80%;
+  width: 55%;
+  height: 180%;
+  background: linear-gradient(
+    105deg,
+    transparent,
+    rgba(255, 255, 255, 0.75),
+    transparent
+  );
+  transform: rotate(12deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.friendly-button:hover::after {
+  left: 130%;
+}
+
+.friendly-button:hover {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 0 8px 0 rgba(74, 59, 92, 0.18);
+  filter: brightness(1.03);
+}
+
+.friendly-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 rgba(74, 59, 92, 0.18);
+}
+
+.friendly-button:focus-visible {
+  outline: 3px solid var(--c-ink);
+  outline-offset: 3px;
+}
+
+/* Hand-drawn squiggle underline for section headings */
+.section-heading::after {
+  content: '';
+  display: block;
+  width: min(190px, 46vw);
+  height: 12px;
+  margin: 0.45rem auto 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 12' fill='none'%3E%3Cpath d='M2 8 Q 18 1.5 34 7 T 68 7 T 102 7 T 136 7 T 178 6' stroke='%23c9b6ff' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Sewn-on look for scrapbook pages */
+.stitched {
+  position: relative;
+}
+
+.stitched::before {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border: 2px dashed rgba(74, 59, 92, 0.18);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Scalloped edge strip — place under an element, bumps facing down.
+   Colored via --scalloped-color on the parent. */
+.scallop-edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 11px;
+  background-image: radial-gradient(
+    circle at 11px -3px,
+    transparent 9px,
+    var(--scallop-color, #fffdf9) 10px
+  );
+  background-size: 22px 11px;
+  background-repeat: repeat-x;
+}
+
+/* Generic modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(74, 59, 92, 0.42);
+  backdrop-filter: blur(3px);
+}
+
+/* Washi tape strip (absolute positioned by parent) */
+.washi-tape {
+  position: absolute;
+  width: 96px;
+  height: 30px;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  opacity: 0.85;
+  border-radius: 2px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.35) 0 6px,
+    transparent 6px 12px
+  );
+  background-color: var(--c-lavender);
+}
+
+.washi-tape--butter { background-color: var(--c-butter); }
+.washi-tape--pink { background-color: var(--c-pink); }
+.washi-tape--sky { background-color: var(--c-sky); }
+
+/* Soft sticky-note surface */
+.sticky-note-surface {
+  background: var(--c-butter);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------------- Reduced motion ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Screen-reader-only helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

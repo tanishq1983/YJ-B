@@ -1,0 +1,133 @@
+.site {
+  position: relative;
+  z-index: 1;
+}
+
+/* ------------------------------------------------------------------
+   Every main section becomes a cute pastel scrapbook "page":
+   rounded paper card, washi tape at the top, scalloped bottom edge.
+------------------------------------------------------------------- */
+#greeting,
+#scrapbook,
+#notes,
+#final-surprise,
+#compliments {
+  position: relative;
+  max-width: min(1080px, calc(100% - 0.6rem));
+  border: 2px solid rgba(74, 59, 92, 0.07);
+  border-radius: 30px;
+  box-shadow: var(--shadow-page);
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.6rem;
+}
+
+/* washi tape pinned on each page (color per page below) */
+#greeting::before,
+#scrapbook::before,
+#notes::before,
+#final-surprise::before,
+#compliments::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  width: 110px;
+  height: 30px;
+  transform: translateX(-50%);
+  opacity: 0.9;
+  border-radius: 2px;
+  z-index: 2;
+  pointer-events: none;
+  background-color: var(--c-pink);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.35) 0 6px,
+    transparent 6px 12px
+  );
+}
+
+/* scalloped bottom edge, bumping out onto the cream background */
+#greeting::after,
+#scrapbook::after,
+#notes::after,
+#final-surprise::after,
+#compliments::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  pointer-events: none;
+  z-index: 2;
+  background-image: radial-gradient(
+    circle at 12px 0px,
+    transparent 10px,
+    var(--page-color) 11px
+  );
+  background-size: 24px 12px;
+  background-repeat: repeat-x;
+}
+
+#greeting {
+  --page-color: #fff6d8;
+  background: linear-gradient(180deg, #fffbe7, #fff6d8);
+}
+#greeting::before { background-color: var(--c-sky); }
+
+#scrapbook {
+  --page-color: #e8f4ff;
+  background: linear-gradient(180deg, #f4faff, #e8f4ff);
+}
+#scrapbook::before { background-color: var(--c-butter); }
+
+#notes {
+  --page-color: #ffe9f1;
+  background: linear-gradient(180deg, #fff5f9, #ffe9f1);
+}
+#notes::before { background-color: var(--c-lavender); }
+
+#final-surprise {
+  --page-color: #f0e9ff;
+  background: linear-gradient(180deg, #f7f2ff, #f0e9ff);
+}
+#final-surprise::before { background-color: var(--c-pink); }
+
+#compliments {
+  --page-color: #eaf7ec;
+  background: linear-gradient(180deg, #f6fcf7, #eaf7ec);
+}
+#compliments::before {
+  background-color: var(--c-pink);
+  transform: translateX(-50%) rotate(5deg);
+}
+
+/* full-page soft page bg outside the cards */
+body {
+  background-color: #fdf8f0;
+}
+
+@media (min-width: 900px) {
+  #greeting,
+  #scrapbook,
+  #notes,
+  #final-surprise,
+  #compliments {
+    margin-top: 3.2rem;
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 2.6rem 1rem 4.5rem;
+  font-size: 0.9rem;
+  color: var(--c-ink);
+  opacity: 0.75;
+}
+
+.footerHand {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+}

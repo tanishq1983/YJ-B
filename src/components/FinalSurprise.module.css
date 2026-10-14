@@ -1,0 +1,98 @@
+.stage {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+}
+
+.bigButton {
+  font-size: 1.05rem;
+  background: linear-gradient(135deg, var(--c-lavender), var(--c-pink));
+  padding: 1rem 2rem;
+}
+
+.cardWrap {
+  position: relative;
+  width: min(92vw, 560px);
+}
+
+.tape {
+  background-color: var(--c-sky);
+  rotate: 3deg;
+  width: 120px;
+}
+
+.card {
+  position: relative;
+  background:
+    radial-gradient(rgba(201, 182, 255, 0.16) 2px, transparent 2.6px),
+    linear-gradient(135deg, rgba(255, 239, 173, 0.55), transparent 60%),
+    linear-gradient(315deg, rgba(201, 182, 255, 0.5), transparent 60%),
+    var(--c-white);
+  background-size: 26px 26px, 100% 100%, 100% 100%;
+  border: 2px solid rgba(74, 59, 92, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(1.8rem, 5vw, 2.8rem);
+  text-align: center;
+}
+
+/* sewn stitched line inside the final card */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border: 2px dashed rgba(74, 59, 92, 0.15);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.para {
+  margin: 0 0 1rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.para:first-of-type {
+  font-family: var(--font-serif, serif);
+  font-size: clamp(1.25rem, 3.6vw, 1.6rem);
+  font-weight: 700;
+  color: var(--c-ink);
+}
+
+.sticker {
+  position: absolute;
+  top: -18px;
+  right: 18px;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  background: var(--c-butter);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(74, 59, 92, 0.18);
+  rotate: 10deg;
+}
+
+.replay {
+  margin-top: 1.2rem;
+  background: none;
+  border: 2px dashed rgba(74, 59, 92, 0.3);
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.replay:hover {
+  background: var(--c-lavender);
+}
+
+.replay:focus-visible {
+  outline: 3px solid var(--c-ink);
+  outline-offset: 2px;
+}

@@ -1,0 +1,151 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1.4rem, 3.5vw, 2.4rem);
+  align-items: stretch;
+}
+
+.envelope {
+  position: relative;
+  width: min(250px, 78vw);
+  min-height: 190px;
+  border: none;
+  border-radius: 12px;
+  padding: 2.4rem 1.2rem 1.1rem;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  transition: rotate 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.envelope:hover {
+  transform: translateY(-6px) scale(1.03);
+  rotate: 0deg;
+  box-shadow: 0 18px 40px rgba(74, 59, 92, 0.22);
+  z-index: 2;
+}
+
+.envelope:focus-visible {
+  outline: 3px solid var(--c-ink);
+  outline-offset: 4px;
+}
+
+.envelope--butter,
+.envelope--pink,
+.envelope--sky {
+  /* colors applied below via specific rules */
+}
+
+.envelope--butter { background: linear-gradient(180deg, #fff4c2, var(--c-butter)); }
+.envelope--pink { background: linear-gradient(180deg, #ffe1ea, var(--c-pink)); }
+.envelope--sky { background: linear-gradient(180deg, #d8eefe, var(--c-sky)); }
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 62%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 12px 12px 0 0;
+  z-index: 0;
+}
+
+/* dotted pattern on the flap for a hand-decorated look */
+.flap {
+  background-image:
+    radial-gradient(rgba(74, 59, 92, 0.08) 1.5px, transparent 2px);
+  background-size: 14px 14px;
+}
+
+/* scalloped bottom edge — bumps hang below the envelope, colored
+   to match each envelope's own paint */
+.scallopBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 11px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.envelope--butter .scallopBottom {
+  background-image: radial-gradient(circle at 9px 0px, transparent 8px, #f7e9a5 9px);
+}
+.envelope--pink .scallopBottom {
+  background-image: radial-gradient(circle at 9px 0px, transparent 8px, #ffd0e0 9px);
+}
+.envelope--sky .scallopBottom {
+  background-image: radial-gradient(circle at 9px 0px, transparent 8px, #b9e0f8 9px);
+}
+.scallopBottom {
+  background-size: 18px 10px;
+  background-repeat: repeat-x;
+}
+
+/* little postage stamp, top-left, like it came by actual mail */
+.stamp {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 34px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 1.05rem;
+  background: var(--c-white);
+  border-radius: 4px;
+  border: 3px dashed rgba(74, 59, 92, 0.14);
+  transform: rotate(-6deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sticker {
+  position: relative;
+  z-index: 1;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  background: var(--c-white);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(74, 59, 92, 0.18);
+  transform: rotate(-6deg);
+  margin-bottom: auto;
+}
+
+.preview {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-hand);
+  font-size: 1.28rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--c-ink);
+}
+
+.openHint {
+  position: relative;
+  z-index: 1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(74, 59, 92, 0.55);
+}
+
+@media (hover: none) {
+  .envelope:active {
+    transform: scale(0.97);
+  }
+}
